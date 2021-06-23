@@ -1,0 +1,42 @@
+#contact {
+  margin-bottom: 30px;
+}
+#contact .title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+#map {
+  /* background-color: yellow; */
+  min-height: 50vh;
+}
+#form-cont {
+  padding: 3rem;
+}
+#form-cont input,
+#form-cont textarea {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-color: #839c44;
+}
+
+#form-cont button {
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  #map {
+    padding-inline: 3rem;
+  }
+  #form-cont {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  #map {
+    padding-inline: 1rem;
+  }
+  #form-cont {
+    padding: 1rem;
+  }
+}

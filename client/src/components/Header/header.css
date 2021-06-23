@@ -1,0 +1,91 @@
+.landing {
+  height: calc(100vh - 87px);
+  user-select: none;
+  margin-top: 87px;
+  margin-bottom: 30px;
+  background-color: #f8f8f8;
+}
+
+.landing .row {
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+  position: relative;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  max-height: calc(100vh - 87px - 10%);
+  overflow: hidden;
+}
+.image {
+  background-image: url(./nature.jpg);
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover;
+  height: 90%;
+  position: relative;
+}
+.image::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+.text button {
+  width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-70%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .landing .row {
+    justify-content: flex-end;
+  }
+  .image::after {
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .text p {
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+  .text h1 {
+    background: -webkit-linear-gradient(left, #5a710e, #5a710e);
+    background: -o-linear-gradient(left, #5a710e, #5a710e);
+    background: linear-gradient(90deg, #5a710e, #5a710e);
+    -webkit-background-clip: text;
+    font-weight: 800 !important;
+  }
+  .text button {
+    font-weight: 900 !important;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .text {
+    transform: translate(-50%, -50%);
+  }
+  .landing {
+    background-color: #fff;
+  }
+  .landing .row {
+    justify-content: center;
+  }
+  .image::after {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}

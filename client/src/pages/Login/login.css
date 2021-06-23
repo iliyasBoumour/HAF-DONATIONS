@@ -1,0 +1,184 @@
+.login-col {
+  background: rgba(149, 157, 16, 0.7);
+  padding: 5rem !important;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.login-col .btn-outline-secondary {
+  width: 50% !important;
+  color: #fff !important;
+  font-size: 1rem !important;
+  border-color: #fff !important;
+}
+.login-col .btn-outline-secondary:hover {
+  color: rgba(149, 157, 16) !important;
+  border-color: rgba(149, 157, 16) !important;
+  background-color: #fff !important;
+}
+.form-login .btn-outline-secondary {
+  font-size: 1rem !important;
+}
+
+/* form login */
+/* Bounce to the left or right side*/
+@keyframes bounceLeft {
+  0% {
+    transform: translate3d(100%, -50%, 0);
+  }
+  50% {
+    transform: translate3d(-30px, -50%, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+@keyframes bounceRight {
+  0% {
+    transform: translate3d(0, -50%, 0);
+  }
+  50% {
+    transform: translate3d(calc(100% + 30px), -50%, 0);
+  }
+  100% {
+    transform: translate3d(100%, -50%, 0);
+  }
+}
+@keyframes showSignUp {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes showLogin {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+}
+/* form login style */
+.form-login {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  min-height: 24em;
+  width: calc(50% - 30px);
+  display: grid !important;
+  place-items: center;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transform: translate3d(100%, -50%, 0);
+  transition: transform 0.4s ease-in-out;
+  padding: 3rem;
+}
+
+.form-login input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #0f1626;
+}
+.form-login input:focus {
+  -webkit-box-shadow: none;
+  border-bottom: 1px solid #ab987a;
+  box-shadow: none;
+}
+/* bounce right and left animations */
+.form-login.bounceLeft {
+  -webkit-animation: bounceLeft 1s forwards;
+  animation: bounceLeft 1s forwards;
+}
+.form-login.bounceRight {
+  -webkit-animation: bounceRight 1s forwards;
+  animation: bounceRight 1s forwards;
+}
+.form-login.bounceRight .col {
+  -webkit-animation: showSignUp 1s forwards;
+  animation: showSignUp 1s forwards;
+}
+.form-login.bounceRight .col {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-120px, 0, 0);
+}
+.form-login.bounceLeft .col {
+  -webkit-animation: showLogin 1s forwards;
+  animation: showLogin 1s forwards;
+}
+.form-login.bounceLeft .col {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(120px, 0, 0);
+}
+
+/* form login */
+@media (max-width: 992px) {
+  .form-login {
+    padding-inline: 1rem;
+  }
+}
+@media (max-width: 767.98px) {
+  /* top */
+  @keyframes bounceLeft {
+    0% {
+      transform: translate3d(0, 0%, 0);
+    }
+    50% {
+      transform: translate3d(0, calc(-104% - 30px), 0);
+    }
+
+    100% {
+      transform: translate3d(0, -104%, 0);
+    }
+  }
+  /* down */
+  @keyframes bounceRight {
+    0% {
+      transform: translate3d(0, -100%, 0);
+    }
+    50% {
+      transform: translate3d(0%, calc(10% + 30px), 0);
+    }
+    100% {
+      transform: translate3d(0%, 10%, 0);
+    }
+  }
+  .form-login.bounceLeft .col {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 104px, 0);
+  }
+  .form-login.bounceRight .col {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, -100px, 0);
+  }
+
+  .form-login {
+    left: 7%;
+    width: 90%;
+    min-height: auto !important;
+    top: 40%;
+    transform: translate3d(0%, 0%, 0);
+  }
+  /* to modify */
+  .form-login.bounceLeft {
+    top: 60%;
+    padding: 0;
+    padding-top: 0.6rem;
+  }
+  .login-col {
+    padding: 4rem !important;
+    align-items: center;
+  }
+}
+
+@media (max-width: 490px) {
+  .login-col {
+    padding: 3rem !important;
+  }
+}

@@ -1,0 +1,118 @@
+#projects {
+  margin-bottom: 30px;
+}
+#projects .title h1:before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  bottom: 0;
+  left: 0%;
+  border-bottom: 3px solid #839c44;
+}
+#projects .title h1 {
+  margin-bottom: 0 !important;
+}
+#projects .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#projects .title button {
+  /* font-size: 1.8rem !important; */
+  border: none !important;
+}
+
+.rec.rec-arrow,
+.rec.rec-arrow:focus {
+  border-radius: 0;
+  color: #fff;
+  background-color: rgb(131, 156, 68, 0.8) !important;
+}
+/* round buttons on hover */
+.rec.rec-arrow:hover {
+  border-radius: 50%;
+  color: #fff;
+  background-color: #839c44 !important;
+}
+/* hide disabled buttons */
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.card {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 1rem !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.card:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.card img {
+  border-radius: 1rem;
+}
+.card-body h5 {
+  font-weight: bold;
+}
+.card-body .btn {
+  width: 100% !important;
+  font-size: 1.2rem !important;
+}
+.card-body .btn:hover {
+  box-shadow: rgba(149, 157, 16, 0.56) 10px 2px 40px 5px !important;
+}
+
+.rc-slider {
+  margin-bottom: 36px;
+}
+
+.rc-slider-track {
+  background-color: #839c44 !important;
+}
+.rc-slider-dot-active {
+  border-color: rgba(149, 157, 16, 0.4) !important;
+}
+.rc-slider-handle {
+  border: solid 2px #839c44 !important;
+}
+
+.rc-slider-disabled {
+  background-color: transparent !important;
+}
+.rc-slider-disabled .rc-slider-handle,
+.rc-slider-disabled .rc-slider-dot {
+  cursor: pointer !important;
+}
+.goal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#raised strong {
+  color: #5a710e;
+}
+#raised {
+  text-align: end;
+}
+@media screen and (max-width: 450px) {
+  .rec.rec-arrow {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    line-height: 40px;
+    font-size: 1.3em;
+  }
+}
+@media screen and (max-width: 370px) {
+  .rec.rec-arrow {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    font-size: 1em;
+  }
+}

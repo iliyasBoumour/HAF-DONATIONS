@@ -1,0 +1,48 @@
+body {
+  font-family: "Old Standard TT", serif !important;
+  user-select: none;
+}
+:root {
+  scroll-behavior: auto !important;
+}
+.text-gradient {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#839c44),
+    to(#5a710e)
+  );
+  background: -webkit-linear-gradient(left, #839c44, #5a710e);
+  background: -o-linear-gradient(left, #839c44, #5a710e);
+  background: linear-gradient(90deg, #839c44, #5a710e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.btn-outline-secondary {
+  color: #5a710e !important;
+  border-color: #5a710e !important;
+  font-size: 1.5rem !important;
+  border-radius: 0 !important;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  color: #fff !important;
+  border-color: #5a710e !important;
+  background-color: #839c44 !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 14px !important;
+  }
+}
+@media screen and (max-width: 300px) {
+  body {
+    font-size: 12px !important;
+  }
+}

@@ -1,0 +1,85 @@
+footer {
+  background-color: rgba(149, 157, 16, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 25%;
+}
+footer .social {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 2rem;
+  padding-bottom: 20px;
+  width: 80%;
+  border-bottom: 1px solid #fff;
+}
+footer .copyright {
+  padding: 2rem;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.social {
+  display: inline-flex;
+}
+
+.social .icon {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* .social .icon:hover {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+} */
+
+.social .facebook:hover {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+
+.social .instagram:hover {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+
+.social .youtube:hover {
+  background-color: #de463b;
+  color: #ffffff;
+}
+@media screen and (max-width: 783px) {
+  footer .social {
+    padding-inline: 0;
+  }
+}
+@media screen and (max-width: 617px) {
+  footer .social {
+    padding-inline: 0;
+  }
+  footer {
+    padding-inline: 10%;
+  }
+}
+@media screen and (max-width: 376px) {
+  footer {
+    padding-inline: 5px;
+  }
+  footer .social {
+    width: 100%;
+  }
+}
