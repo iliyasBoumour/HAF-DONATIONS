@@ -74,6 +74,24 @@ const registerSchema = {
 
 };
 
+//login schema
+const loginSchema = {
+    email: {
+        isEmail: {
+            errorMessage: "invalid email",
+        },
+        notEmpty: {
+            errorMessage: "email cannot be empty"
+        }
+    },
+    password: {
+        notEmpty: true,
+        errorMessage: "password field canot be empty"
+    }
+
+};
+
+
 //custom errors messages
 const customErrors = errors => {
     const myErrors = {};
@@ -103,3 +121,4 @@ const validate = validations => {
 };
 
 exports.registerValidation = validate(checkSchema(registerSchema));
+exports.loginValidation = validate(checkSchema(loginSchema));

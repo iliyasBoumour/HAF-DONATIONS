@@ -4,9 +4,12 @@ import { Button } from "reactstrap";
 import SignInOrUp from "./SignInOrUp";
 import "./login.css";
 import { useHistory } from "react-router-dom";
-
+import { register, login } from '../../actions/authActions';
+import { useDispatch, useSelector } from 'react-redux';
 const Login = () => {
+  const {isAuth} = useSelector(state => state.authReducer);
   const [isLogin, setisLogin] = useState(true);
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -30,12 +33,31 @@ const Login = () => {
   };
   const submitform = (e) => {
     e.preventDefault();
-    isLogin ? login() : signUp();
+    isLogin ? signIn() : signUp();
     setUser({ username: "", email: "", password: "", confPassword: "" });
   };
+  //sign up
+  const signUp = () => {
+    console.log(user);
+    dispatch(register(user));
+  };
 
-  const signUp = async () => {};
-  const login = async () => {};
+  //sign in
+  const signIn = () => {
+    const {email, password} = user;
+    const userAuth = {
+      email,
+      password,
+    };
+    //console.log(userAuth);
+    dispatch(login(userAuth));
+
+    console.log(isAuth);
+
+    //TEST
+
+
+  };
 
   return (
     <div
