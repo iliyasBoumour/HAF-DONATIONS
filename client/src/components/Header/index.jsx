@@ -1,8 +1,10 @@
 import React from "react";
 import "./header.css";
 import { Container, Row, Col, Button } from "reactstrap";
+import { useHistory } from "react-router";
 
-const index = () => {
+const Header = () => {
+  const history = useHistory();
   return (
     <Container id="home" className="landing" fluid={true}>
       <Row>
@@ -15,7 +17,11 @@ const index = () => {
             shining on the rain and the rain falling on the sunshine, and things
             pushing up and working under the earth.
           </p>
-          <Button className=" animate__animated animate__backInUp" outline>
+          <Button
+            className=" animate__animated animate__backInUp"
+            onClick={() => history.push("/projects")}
+            outline
+          >
             Donate Now
           </Button>
         </Col>
@@ -30,4 +36,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Header;

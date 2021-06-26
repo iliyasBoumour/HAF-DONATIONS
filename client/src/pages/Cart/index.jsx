@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Center from "../../components/Center";
 import Item from "../../components/CartItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import { Button } from "reactstrap";
 import "./cart.css";
 
 const Cart = () => {
-  const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cartReducers);
+  useEffect(() => window.scrollTo(0, 0));
   return (
     <div className="cart-screen">
       {cart.length === 0 ? (

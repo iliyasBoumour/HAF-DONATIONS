@@ -111,9 +111,21 @@ const Index = ({ location }) => {
               )}
             </NavItem>
             <NavItem>
-              <RLink className="nav-link" to="/projects">
-                projects
-              </RLink>
+              {location.pathname === "/" ? (
+                <Link {...scroll} to="projects">
+                  projects
+                </Link>
+              ) : (
+                <RLink
+                  className="nav-link"
+                  to={{
+                    pathname: "/",
+                    id: "projects",
+                  }}
+                >
+                  projects
+                </RLink>
+              )}
             </NavItem>
             <NavItem>
               {location.pathname === "/" ? (
