@@ -1,8 +1,8 @@
-import express from "express";
-import dotenv from "dotenv";
-import colors from "colors";
-import connection from "./config/db.js";
-
+const express = require('express');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const connection = require('./config/db');
+const mongoose = require('mongoose');
 dotenv.config();
 // create express app
 const app = express();
@@ -11,9 +11,15 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+//using routes api
+app.use('/api', require('./routes/api/auth.router'));
+app.use('/api/test', require('./routes/api/country'));
+app.use('/admin', require('./routes/api/admin.router'));
 app.get("/", (req, res) => res.send("test"));
 
 connection();
+
 app.listen(process.env.PORT, () => {
   console.log(
     `app listening at http://localhost:${process.env.PORT}`.green.underline.bold

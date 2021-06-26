@@ -1,4 +1,40 @@
-import mongoose from "mongoose";
+// const mongoose = require('mongoose');
+
+// const connection = async () => {
+//   try {
+//     const conn = await mongoose.connect(process.env.DB_HOST, {
+//       useUnifiedTopology: true,
+//       useNewUrlParser: true,
+//       useCreateIndex: true,
+//       useFindAndModify: false,
+//     });
+//     console.log("connected !!!");
+//   } catch (error) {
+//     process.exit(1);
+//   }
+// };
+
+// module.exports = connection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const mongoose = require('mongoose');
 
 const connection = async () => {
   const db = process.env.DB_HOST;
@@ -14,4 +50,7 @@ const connection = async () => {
     process.exit(1);
   }
 };
-export default connection;
+
+module.exports = connection;
+
+
