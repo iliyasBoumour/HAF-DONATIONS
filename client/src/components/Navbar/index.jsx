@@ -5,11 +5,13 @@ import { Link } from "react-scroll";
 import { Link as RLink } from "react-router-dom";
 import { RiShoppingCartLine, RiUserLine } from "react-icons/ri";
 import NotificationBadge, { Effect } from "react-notification-badge";
-import { Collapse, Navbar, NavItem, NavLink, Nav, Container } from "reactstrap";
+import { Collapse, Navbar, NavItem, Nav, Container } from "reactstrap";
+import { useSelector } from "react-redux";
 
 const Index = ({ location }) => {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
+  const { cart } = useSelector((state) => state.cartReducers);
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
@@ -148,10 +150,10 @@ const Index = ({ location }) => {
               )}
             </NavItem>
             <NavItem>
-              <NavLink to="/">
-                <NotificationBadge count={2} effect={Effect.SCALE} />
+              <RLink className="nav-link" to="/cart">
+                <NotificationBadge count={cart.length} effect={Effect.SCALE} />
                 <RiShoppingCartLine fontSize="1.4rem" />
-              </NavLink>
+              </RLink>
             </NavItem>
             <NavItem>
               <RLink className="nav-link" to="/login">

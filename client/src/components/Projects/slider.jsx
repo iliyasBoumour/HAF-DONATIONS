@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import Card from "./project";
+import { data } from "../../projects";
 
 const MySlider = () => {
   const settings = {
@@ -10,7 +11,7 @@ const MySlider = () => {
     itemPadding: [10],
     // enableAutoPlay: true,
     breakPoints: [
-      { width: 1, itemsToShow: 1 },
+      { width: 1, itemsToShow: 1, itemsToScroll: 1 },
       { width: 550, itemsToShow: 2, itemsToScroll: 2 },
       { width: 850, itemsToShow: 3, itemsToScroll: 3 },
       // { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
@@ -20,17 +21,9 @@ const MySlider = () => {
   };
   return (
     <Carousel {...settings}>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {data.map((proj) => (
+        <Card key={proj._id} {...proj} />
+      ))}
     </Carousel>
   );
 };

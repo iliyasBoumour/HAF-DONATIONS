@@ -21,19 +21,28 @@ body {
   display: inline-block;
 }
 
-.btn-outline-secondary {
+.btn-outline-secondary,
+.btn-outline-secondary:focus {
   color: #5a710e !important;
   border-color: #5a710e !important;
   font-size: 1.5rem !important;
   border-radius: 0 !important;
+  outline: none;
+  box-shadow: none !important;
 }
-.btn-outline-secondary:hover,
-.btn-outline-secondary:focus {
+.btn-outline-secondary:hover {
   color: #fff !important;
   border-color: #5a710e !important;
   background-color: #839c44 !important;
   outline: none;
   box-shadow: none !important;
+}
+
+.alert {
+  font-size: 1.2rem;
+}
+a {
+  text-decoration: none !important;
 }
 
 @media screen and (max-width: 400px) {

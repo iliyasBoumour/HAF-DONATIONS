@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Card,
   CardImg,
@@ -8,42 +9,154 @@ import {
 } from "reactstrap";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-const project = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, removeItemfromCart } from "../../actions/cartActions";
+import { Modal } from "react-bootstrap";
+const Project = ({
+  _id,
+  image,
+  name,
+  description,
+  evolution,
+  goal,
+  raised,
+  page,
+}) => {
   const heightMarks = {
-    0: "0",
-    // 10: "10",
-    20: "20",
-    // 30: "30",
-    40: "40",
-    // 50: "50",
-    60: "60",
-    // 70: "70",
-    80: "80",
-    // 90: "90",
-    100: "100",
+    [evolution]: `${evolution}%`,
+  };
+  // modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  // check if its in cart
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cartReducers);
+  const [inCart, setInCart] = useState(cart.some((pr) => pr._id === _id));
+  const [disable, setDisable] = useState(false);
+  // amount
+  const [amount, setAmount] = useState();
+  const [isError, setIsError] = useState(false);
+  const addToCart = () => {
+    if (amount > 0) {
+      setDisable(true);
+      dispatch(addItemToCart(_id, amount));
+      setInCart(true);
+      setDisable(false);
+      handleClose();
+    } else setIsError(true);
+  };
+  const handleModal = () => {
+    if (inCart) {
+      dispatch(removeItemfromCart(_id));
+      setInCart(false);
+    } else {
+      setAmount(false);
+      setIsError(false);
+      setShow(true);
+    }
   };
   return (
-    <Card>
-      <CardImg top width="100%" src="/images/2.jpg" alt="Card image cap" />
-      <CardBody>
-        <CardTitle tag="h5">Card title</CardTitle>
-        <CardText>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </CardText>
-        <Slider defaultValue={60} marks={heightMarks} disabled={true} />
-        <div className="goal">
-          <p>
-            Goal : <strong>$300M</strong>
-          </p>
-          <p id="raised">
-            Raised : <strong>22.000</strong>
-          </p>
-        </div>
-        <Button outline>Donate</Button>
-      </CardBody>
-    </Card>
+    <>
+      <Card>
+        <CardImg top width="100%" src={image} alt={name} />
+        <CardBody>
+          <div>
+            <CardTitle tag="h5">{name}</CardTitle>
+            <CardText>
+              {!page
+                ? `${description?.substring(0, 150)} ${
+                    description.length > 150 ? "..." : ""
+                  } `
+                : description}
+            </CardText>
+          </div>
+          <div>
+            <Slider
+              defaultValue={evolution}
+              marks={heightMarks}
+              disabled={true}
+            />
+            <div className="goal">
+              <p>
+                Goal : <strong>{goal} MDH</strong>
+              </p>
+              <p id="raised">
+                Raised : <strong>{raised}</strong>
+              </p>
+            </div>
+            <Button
+              disabled={disable}
+              className={inCart ? "remove" : ""}
+              outline
+              onClick={handleModal}
+            >
+              {inCart ? "Remove From Cart" : "Donate"}
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="modal-cont">
+            <img src={image} alt={name} />
+            <div className="don-info">
+              <h3 className="text-gradient">{name}</h3>
+              <div className="goals">
+                <p>
+                  Goal : <strong>${goal}M</strong>
+                </p>
+                <p id="raised">
+                  Raised : <strong>{raised}</strong>
+                </p>
+              </div>
+              {inCart || (
+                <div className="amount">
+                  <input
+                    type="number"
+                    placeholder="Amount"
+                    value={amount}
+                    onChange={(e) => {
+                      setIsError(false);
+                      setAmount(e.target.value);
+                    }}
+                  />
+                  <span>DH</span>
+                </div>
+              )}
+              <p
+                style={isError ? { display: "block" } : { display: "none" }}
+                className="error"
+              >
+                Set an amount &gt; 0
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button outline className="remove" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            disabled={disable}
+            className={inCart ? "remove" : ""}
+            onClick={addToCart}
+            outline
+          >
+            {inCart ? "Remove From Cart" : "Add To Cart"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
-export default project;
+export default Project;

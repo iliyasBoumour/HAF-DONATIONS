@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from "reactstrap";
 import Project from "../../components/Projects/project";
 import "./projects.css";
+import { data } from "../../projects";
 
 const Index = () => {
   useEffect(() => {
@@ -20,18 +21,11 @@ const Index = () => {
       </div>
       <div className="content">
         <Row>
-          <Col xs="12" sm="6">
-            <Project />
-          </Col>
-          <Col xs="12" sm="6">
-            <Project />
-          </Col>
-          <Col xs="12" sm="6">
-            <Project />
-          </Col>
-          <Col xs="12" sm="6">
-            <Project />
-          </Col>
+          {data.map((pr) => (
+            <Col xs="12" lg="6">
+              <Project key={pr._id} {...pr} page={true} />
+            </Col>
+          ))}
         </Row>
       </div>
     </div>

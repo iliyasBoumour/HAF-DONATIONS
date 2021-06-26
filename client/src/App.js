@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Login from "./pages/Login";
+import Cart from "./pages/Cart";
 
 function App() {
   const location = useLocation();
@@ -15,6 +16,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/cart" component={Cart} />
+        {/* <Route path="*" component={Center}></Route> */}
       </Switch>
       {location.pathname === "/login" || <Footer />}
     </>
