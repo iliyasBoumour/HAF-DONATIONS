@@ -1,5 +1,6 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const SET_PAYMENT_METHOD = "SET_PAYMENT_METHOD";
 
 //types authentification
 export const GET_ERRORS = "GET_ERRORS";
@@ -15,4 +16,3 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const AUTH_ERROR = "AUTH_ERROR";
 
 export const IS_AUTH = "IS_AUTH";
-

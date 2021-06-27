@@ -9,7 +9,6 @@ const CartItem = ({ _id, image, name, amount }) => {
   const removeItem = () => {
     dispatch(removeItemfromCart(_id));
   };
-  console.log(amount);
   return (
     <div className="cart-item">
       <img src={image} alt={name} />

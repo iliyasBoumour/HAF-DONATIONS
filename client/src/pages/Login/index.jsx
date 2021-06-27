@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import { Button } from "reactstrap";
 import SignInOrUp from "./SignInOrUp";
 import "./login.css";
 import { useHistory } from "react-router-dom";
-import { register, login } from '../../actions/authActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { register, login } from "../../actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
-  const {isAuth} = useSelector(state => state.authReducer);
+  const { currentUser } = useSelector((state) => state.authReducer);
   const [isLogin, setisLogin] = useState(true);
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -18,6 +18,11 @@ const Login = () => {
   });
   const refForms = useRef(null);
   const history = useHistory();
+
+  useEffect(() => {
+    if (currentUser) history.push("/");
+  }, [currentUser]);
+
   const showForm = () => {
     setisLogin(!isLogin);
     const toRemove = isLogin
@@ -44,19 +49,12 @@ const Login = () => {
 
   //sign in
   const signIn = () => {
-    const {email, password} = user;
+    const { email, password } = user;
     const userAuth = {
       email,
       password,
     };
-    //console.log(userAuth);
     dispatch(login(userAuth));
-
-    console.log(isAuth);
-
-    //TEST
-
-
   };
 
   return (

@@ -2,16 +2,35 @@ import React from "react";
 import classnames from "classnames";
 import "./navbar.css";
 import { Link } from "react-scroll";
-import { Link as RLink } from "react-router-dom";
+import { Link as RLink, useHistory } from "react-router-dom";
 import { RiShoppingCartLine, RiUserLine } from "react-icons/ri";
 import NotificationBadge, { Effect } from "react-notification-badge";
-import { Collapse, Navbar, NavItem, Nav, Container } from "reactstrap";
-import { useSelector } from "react-redux";
+import {
+  Collapse,
+  Navbar,
+  NavItem,
+  Nav,
+  Container,
+  UncontrolledDropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+} from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../actions/authActions";
 
 const Index = ({ location }) => {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
   const { cart } = useSelector((state) => state.cartReducers);
+  const { currentUser } = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const setLogOut = () => {
+    dispatch(logout());
+    history.push("/");
+  };
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
@@ -167,11 +186,24 @@ const Index = ({ location }) => {
                 <RiShoppingCartLine fontSize="1.4rem" />
               </RLink>
             </NavItem>
-            <NavItem>
-              <RLink className="nav-link" to="/login">
-                <RiUserLine fontSize="1.4rem" />
-              </RLink>
-            </NavItem>
+            {!currentUser ? (
+              <NavItem>
+                <RLink className="nav-link " to={"/login"}>
+                  <RiUserLine fontSize="1.4rem" />
+                </RLink>
+              </NavItem>
+            ) : (
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {currentUser.username}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>profile</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={setLogOut}>Log Out</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            )}
           </Nav>
         </Collapse>
       </Container>

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
+import { ADD_TO_CART, REMOVE_FROM_CART, SET_PAYMENT_METHOD } from "./types";
 import { data } from "../projects";
 export const addItemToCart = (itemId, amount) => async (dispatch, getState) => {
   //   try {
@@ -18,4 +18,10 @@ export const removeItemfromCart = (itemId) => async (dispatch, getState) => {
   //   } catch (error) {
 
   //   }
+};
+export const setPaymentMethod = (data) => (dispatch) => {
+  dispatch({
+    type: SET_PAYMENT_METHOD,
+    payload: data,
+  });
 };

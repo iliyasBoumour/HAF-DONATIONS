@@ -1,4 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/types";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  SET_PAYMENT_METHOD,
+} from "../actions/types";
 
 export const cartReducers = (
   state = {
@@ -21,6 +25,11 @@ export const cartReducers = (
       return { cart: newCart };
     case REMOVE_FROM_CART:
       return { cart: state.cart.filter((pr) => pr._id !== action.payload) };
+    case SET_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: action.payload,
+      };
     default:
       return state;
   }

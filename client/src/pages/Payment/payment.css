@@ -1,0 +1,19 @@
+#payment {
+  min-height: calc(100vh - 227px - 150px);
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-content {
+  flex: 1;
+  width: 100%;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
