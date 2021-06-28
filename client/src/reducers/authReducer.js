@@ -7,7 +7,6 @@ import {
   LOGING_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  IS_AUTH,
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
     : null,
 };
 
-export default function (state = initialState, action) {
+const authRed = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
       return {
@@ -43,4 +42,5 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+export default authRed;

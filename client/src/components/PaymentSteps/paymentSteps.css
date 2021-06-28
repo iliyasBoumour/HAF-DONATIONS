@@ -39,8 +39,8 @@
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
-.login-container button {
-  margin: auto;
+.login-container .toast-header button {
+  margin-left: auto !important;
 }
 @media screen and (max-width: 576px) {
   .login-container,
@@ -60,48 +60,20 @@
 .method-container button {
   margin: auto;
 }
-.method-container .form-check-input:checked {
-  background-color: #5a710e;
-  border-color: #5a710e;
+.form-check-input:checked {
+  background-color: #5a710e !important;
+  border-color: #5a710e !important;
 }
-.method-container .form-check-input:focus {
-  border: none !important;
-  outline: none;
+.form-check-input:focus {
+  border-color: #5a710e !important;
+  outline: none !important;
   box-shadow: none !important;
 }
 /* order */
-.pay-container {
-  flex: 1;
-}
-.pay-container .order-content {
-  background-color: #5a710e;
-}
-.cartTotal {
-  border: 1px solid #5a710e;
-  padding: 32px;
-  height: 500px;
+.order-info {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
 }
-.cartTotal .one-info {
-  display: flex;
-}
-.cartTotal .one-info h6 {
-  margin-right: 1rem;
-  margin-bottom: 0 !important;
-  font-weight: bold !important;
-}
-.cartTotal .one-info .remove {
-  margin-left: auto;
-}
-
-hr {
-  border-top: 1px solid #5a710e;
-  width: 100%;
-}
-@media (max-width: 992px) {
-  .cartTotal {
-    height: 400px;
-  }
+.order-info h3 {
+  font-weight: bold;
 }

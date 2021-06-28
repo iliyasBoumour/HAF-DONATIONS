@@ -7,7 +7,7 @@ import { data } from "../../projects";
 const Index = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   return (
     <div className="projects">
       <div className="caption">
@@ -22,8 +22,8 @@ const Index = () => {
       <div className="content">
         <Row>
           {data.map((pr) => (
-            <Col xs="12" lg="6">
-              <Project key={pr._id} {...pr} page={true} />
+            <Col key={pr._id} xs="12" lg="6">
+              <Project {...pr} page={true} />
             </Col>
           ))}
         </Row>

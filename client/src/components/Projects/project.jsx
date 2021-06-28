@@ -78,10 +78,10 @@ const Project = ({
             />
             <div className="goal">
               <p>
-                Goal : <strong>{goal} MDH</strong>
+                Goal : <strong>{goal} $</strong>
               </p>
               <p id="raised">
-                Raised : <strong>{raised}</strong>
+                Rest : <strong>{raised} $</strong>
               </p>
             </div>
             <Button
@@ -129,7 +129,7 @@ const Project = ({
                       setAmount(e.target.value);
                     }}
                   />
-                  <span>DH</span>
+                  <span>$</span>
                 </div>
               )}
               <p

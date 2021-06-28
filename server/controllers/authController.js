@@ -69,7 +69,11 @@ exports.getCurrentUser = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("user not found");
   }
-  return res
-    .status(200)
-    .json({ id: user._id, username: user.username, email: user.email });
+  return res.status(200).json({
+    id: user._id,
+    username: user.username,
+    email: user.email,
+    phone: user.phone,
+    country: user.country,
+  });
 });

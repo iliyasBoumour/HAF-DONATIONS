@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, SET_PAYMENT_METHOD } from "./types";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  SET_PAYMENT_METHOD,
+  CLEAN_CART,
+} from "./types";
 import { data } from "../projects";
 export const addItemToCart = (itemId, amount) => async (dispatch, getState) => {
   //   try {
@@ -22,6 +27,13 @@ export const removeItemfromCart = (itemId) => async (dispatch, getState) => {
 export const setPaymentMethod = (data) => (dispatch) => {
   dispatch({
     type: SET_PAYMENT_METHOD,
+    payload: data,
+  });
+};
+export const cleanCart = () => (dispatch) => {
+  localStorage.removeItem("cart");
+  dispatch({
+    type: CLEAN_CART,
     payload: data,
   });
 };

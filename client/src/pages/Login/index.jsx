@@ -21,7 +21,7 @@ const Login = () => {
 
   useEffect(() => {
     if (currentUser) history.push("/");
-  }, [currentUser]);
+  }, [currentUser, history]);
 
   const showForm = () => {
     setisLogin(!isLogin);

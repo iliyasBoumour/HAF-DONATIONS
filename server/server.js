@@ -1,8 +1,8 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const colors = require('colors');
-const connection = require('./config/db');
-const mongoose = require('mongoose');
+const express = require("express");
+const dotenv = require("dotenv");
+const colors = require("colors");
+const connection = require("./config/db");
+const errorsMiddleware = require("./middleware/error");
 dotenv.config();
 // create express app
 const app = express();
@@ -11,12 +11,16 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 //using routes api
-app.use('/api', require('./routes/api/auth.router'));
-app.use('/api/test', require('./routes/api/country'));
-app.use('/admin', require('./routes/api/admin.router'));
+app.use("/api", require("./routes/api/auth.router"));
+app.use("/api/test", require("./routes/api/country"));
+app.use("/admin", require("./routes/api/admin.router"));
+app.use("/api/paypalId", (req, res) => res.json({ id: process.env.PAYPAL_ID }));
+app.use("/api/email", require("./routes/api/email.routes"));
 app.get("/", (req, res) => res.send("test"));
+
+app.use(errorsMiddleware.noRouteError);
+app.use(errorsMiddleware.globalError);
 
 connection();
 

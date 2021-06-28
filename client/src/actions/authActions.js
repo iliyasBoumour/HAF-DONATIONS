@@ -1,13 +1,10 @@
 import {
-  USER_LOADING,
-  USER_LOADED,
   LOGING_SUCCESS,
   REGISTER_SUCCESS,
   LOGIN_FAIL,
   REGISTER_FAIL,
   LOGOUT_SUCCESS,
   CLEAR_ERRORS,
-  AUTH_ERROR,
 } from "./types";
 
 import axios from "axios";
@@ -30,7 +27,6 @@ export const register = (user) => (dispatch) => {
 };
 
 //login
-// use redux thunk
 export const login = (user) => async (dispatch) => {
   try {
     const { data } = await axios.post("/api/login", user);

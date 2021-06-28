@@ -11,19 +11,21 @@ const CartItem = ({ _id, image, name, amount }) => {
   };
   return (
     <div className="cart-item">
-      <img src={image} alt={name} />
-      <div className="cart-info">
+      <div className="pr-img-name">
+        <img width={100} src={image} alt={name} />
         <h4>{name}</h4>
-        <div className="cart-amount">
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => dispatch(addItemToCart(_id, e.target.value))}
-          />
-          <span className="text-gradient">DH</span>
-        </div>
       </div>
-      <MdDelete fontSize="1.7rem" onClick={removeItem} />
+      <div className="cart-amount">
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => dispatch(addItemToCart(_id, e.target.value))}
+        />
+        <span className="text-gradient">$</span>
+      </div>
+      <div className="delete">
+        <MdDelete fontSize="1.7rem" onClick={removeItem} />
+      </div>
     </div>
   );
 };
