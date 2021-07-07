@@ -15,7 +15,7 @@ app.use(express.json());
 app.use("/api", require("./routes/api/auth.router"));
 app.use("/api/test", require("./routes/api/country"));
 app.use("/admin", require("./routes/api/admin.router"));
-app.use("/api/paypalId", (req, res) => res.json({ id: process.env.PAYPAL_ID }));
+
 app.use("/api/email", require("./routes/api/email.routes"));
 app.get("/", (req, res) => res.send("test"));
 

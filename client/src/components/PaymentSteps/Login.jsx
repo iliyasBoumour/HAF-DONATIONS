@@ -9,22 +9,21 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const { errors } = useSelector((state) => state.errorReducer);
+  const { error, isloading } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (errors && errors.msg) {
+    if (error) {
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
       }, 5000);
     }
-  }, [errors]);
+  }, [error]);
 
   useEffect(() => {
-    console.log("false ");
     setShowToast(false);
-  }, []);
+  }, [email, password]);
 
   const signIn = (e) => {
     e.preventDefault();
@@ -56,11 +55,11 @@ const Login = () => {
           placeholder="PASSWORD"
           required
         />
-        <Button outline type="submit">
+        <Button outline type="submit" disabled={isloading}>
           Sign In
         </Button>
       </Form>
-      {showToast && <Toast msg={errors.msg} />}
+      {showToast && <Toast msg={error} />}
     </div>
   );
 };

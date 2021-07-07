@@ -1,4 +1,5 @@
 import {
+  LOGING_LOADING,
   LOGING_SUCCESS,
   REGISTER_SUCCESS,
   LOGIN_FAIL,
@@ -29,13 +30,18 @@ export const register = (user) => (dispatch) => {
 //login
 export const login = (user) => async (dispatch) => {
   try {
+    dispatch({ type: LOGING_LOADING });
     const { data } = await axios.post("/api/login", user);
     dispatch({ type: LOGING_SUCCESS, payload: data });
     localStorage.setItem("currentUser", JSON.stringify(data));
-    dispatch({ type: CLEAR_ERRORS });
   } catch (err) {
-    dispatch({ type: LOGIN_FAIL });
-    dispatch(returnErrors(err.response?.data, err.response?.status));
+    dispatch({
+      type: LOGIN_FAIL,
+      payload:
+        err.response && err.response.data.msg
+          ? err.response.data.msg
+          : err.message,
+    });
   }
 };
 

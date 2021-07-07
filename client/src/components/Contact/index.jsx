@@ -3,12 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "./contact.css";
 import { Container, Row, Col, Button, Form, Input } from "reactstrap";
 import Map from "./Map";
-import Toast from "../../components/Toast";
 import { sendEmail } from "../../actions/emailActions";
 import { Alert } from "react-bootstrap";
-import { EMAIL_RESET } from "../../actions/types";
 
-const Contact = ({ location }) => {
+const Contact = () => {
   const dispatch = useDispatch();
   const { loading, sent, error } = useSelector((state) => state.emailReducers);
   const [showToast, setShowToast] = useState(false);
@@ -19,9 +17,6 @@ const Contact = ({ location }) => {
     message: "",
   });
   useEffect(() => {
-    setShowToast(false);
-  }, [email]);
-  useEffect(() => {
     if (sent || error) {
       setShowToast(true);
       setTimeout(() => {
@@ -31,7 +26,7 @@ const Contact = ({ location }) => {
   }, [error, sent]);
   useEffect(() => {
     setShowToast(false);
-  }, []);
+  }, [email]);
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;

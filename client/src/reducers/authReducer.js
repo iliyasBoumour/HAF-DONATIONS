@@ -1,7 +1,7 @@
 import {
   USER_LOADED,
   USER_LOADING,
-  AUTH_ERROR,
+  LOGING_LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGING_SUCCESS,
@@ -33,6 +33,8 @@ const authRed = (state = initialState, action) => {
         isAuth: false,
         isLoading: false,
       };
+    case LOGING_LOADING:
+      return { isLoading: true };
     case LOGING_SUCCESS:
       return { currentUser: action.payload, isLoading: false };
     case LOGIN_FAIL:

@@ -23,10 +23,11 @@ const Pay = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
-  const [paypalSdk, setPaypalSdk] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
-  const paymentSuc = (paymentRes) => {
+  const paymentSuc = (paymentRes, data) => {
+    // orderId: data.orderID
+    // "Transaction completed by " + details.payer.name.given_name
     dispatch(pay(paymentRes));
   };
   useEffect(() => {
@@ -40,13 +41,6 @@ const Pay = () => {
       try {
         const { data } = await axios(`/api/user`, config);
         setUser(data);
-        const { data: paypal } = await axios(`/api/paypalId`, config);
-        const paypalScript = document.createElement("script");
-        paypalScript.type = "text/javascript";
-        paypalScript.src = `https://www.paypal.com/sdk/js?client-id=${paypal.id}`;
-        paypalScript.async = true;
-        paypalScript.onload = () => setPaypalSdk(true);
-        document.body.appendChild(paypalScript);
       } catch (error) {
         setError(error?.response?.data?.msg);
       }
@@ -68,8 +62,7 @@ const Pay = () => {
         setShowToast(false);
       }, 2000);
     }
-  }, [payment, paymentErr]);
-
+  }, [payment, paymentErr, dispatch, history]);
   return (
     <Row className="pay-container">
       {error ? (
@@ -107,12 +100,18 @@ const Pay = () => {
             <Col xs="12" lg="4" className="order-summary">
               <CartSummary title="Cart Total" cart={cart}>
                 <div className=" text-uppercase mt-auto fw-bold ">
-                  {loading || !paypalSdk ? (
+                  {loading ? (
                     <p>loading ...</p>
                   ) : (
                     <PayPalButton
                       amount={cart.reduce((acc, item) => acc + item.amount, 0)}
+                      shippingPreference="NO_SHIPPING"
                       onSuccess={paymentSuc}
+                      options={{
+                        clientId: process.env.REACT_APP_API_KEY,
+                      }}
+                      onError={(e) => console.log(e)}
+                      onCancel={(data) => console.log(data)}
                     />
                   )}
                 </div>
