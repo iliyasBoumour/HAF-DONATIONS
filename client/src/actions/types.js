@@ -13,6 +13,10 @@ export const EMAIL_LOADING = "EMAIL_LOADING";
 export const EMAIL_SUCCESS = "EMAIL_SUCCESS";
 export const EMAIL_FAIL = "EMAIL_FAIL";
 export const EMAIL_RESET = "EMAIL_RESET";
+// projects
+export const GET_PROJECTS = "GET_PROJECTS";
+export const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS";
+export const GET_PROJECTS_FAIL = "GET_PROJECTS_FAIL";
 
 //types authentification
 export const GET_ERRORS = "GET_ERRORS";

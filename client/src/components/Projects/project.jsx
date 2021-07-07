@@ -12,16 +12,8 @@ import "rc-slider/assets/index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart, removeItemfromCart } from "../../actions/cartActions";
 import { Modal } from "react-bootstrap";
-const Project = ({
-  _id,
-  image,
-  name,
-  description,
-  evolution,
-  goal,
-  raised,
-  page,
-}) => {
+const Project = ({ _id, image, name, description, goal, rest, page }) => {
+  const evolution = Math.trunc(100 - (rest / goal) * 100);
   const heightMarks = {
     [evolution]: `${evolution}%`,
   };
@@ -71,17 +63,13 @@ const Project = ({
             </CardText>
           </div>
           <div>
-            <Slider
-              defaultValue={evolution}
-              marks={heightMarks}
-              disabled={true}
-            />
+            <Slider marks={heightMarks} disabled={true} value={evolution} />
             <div className="goal">
               <p>
                 Goal : <strong>{goal} $</strong>
               </p>
               <p id="raised">
-                Rest : <strong>{raised} $</strong>
+                Rest : <strong>{rest} $</strong>
               </p>
             </div>
             <Button
@@ -115,7 +103,7 @@ const Project = ({
                   Goal : <strong>${goal}M</strong>
                 </p>
                 <p id="raised">
-                  Raised : <strong>{raised}</strong>
+                  Rest : <strong>{rest}</strong>
                 </p>
               </div>
               {inCart || (

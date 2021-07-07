@@ -17,7 +17,7 @@ app.use("/api/test", require("./routes/api/country"));
 app.use("/admin", require("./routes/api/admin.router"));
 
 app.use("/api/email", require("./routes/api/email.routes"));
-app.get("/", (req, res) => res.send("test"));
+app.use("/api/projects", require("./routes/api/projects.routes"));
 
 app.use(errorsMiddleware.noRouteError);
 app.use(errorsMiddleware.globalError);
