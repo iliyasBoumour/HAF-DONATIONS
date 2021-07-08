@@ -1,10 +1,11 @@
 import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_FAIL } from "./types";
 import axios from "axios";
 
-export const getProjects = () => async (dispatch) => {
+export const getProjects = (completed) => async (dispatch) => {
   try {
     dispatch({ type: GET_PROJECTS });
-    const { data } = await axios.get("/api/projects");
+    const url = completed ? "/api/projects" : "/api/projects?notCompleted";
+    const { data } = await axios.get(url);
     dispatch({ type: GET_PROJECTS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

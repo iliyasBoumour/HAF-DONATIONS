@@ -3,7 +3,6 @@ import Carousel from "react-elastic-carousel";
 import Card from "./project";
 
 const MySlider = ({ data }) => {
-  // console.log(data);
   const settings = {
     itemsToShow: 4,
     pagination: false,

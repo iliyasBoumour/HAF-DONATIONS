@@ -10,3 +10,11 @@ exports.getAll = asyncHandler(async (req, res) => {
   const data = await Project.find(condition).sort({ rest: 1 }).limit(lim);
   res.json(data);
 });
+exports.getOne = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const data = await Project.findOne({ _id: id });
+  if (data === null) {
+    res.status(404);
+    throw new Error("Project not found");
+  } else res.json(data);
+});

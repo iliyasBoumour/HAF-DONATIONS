@@ -12,7 +12,7 @@ const Index = () => {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProjects());
+    dispatch(getProjects(false));
   }, [dispatch]);
   return (
     <Container id="projects" fluid="lg">

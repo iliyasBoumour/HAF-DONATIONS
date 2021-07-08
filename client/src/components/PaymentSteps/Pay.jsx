@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Alert, Col, Input, Label, Row } from "reactstrap";
+import { Alert, Col, Input, Label, Row, Spinner } from "reactstrap";
 import CartSummary from "../CartItem/CartSummary";
 import axios from "axios";
 import "./paymentSteps.css";
@@ -23,11 +23,10 @@ const Pay = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [anonymous, setAnonymous] = useState(false);
+  const [paypalSdk, setPaypalSdk] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
   const paymentSuc = (paymentRes, data) => {
-    // orderId: data.orderID
-    // "Transaction completed by " + details.payer.name.given_name
     dispatch(pay(paymentRes));
   };
   useEffect(() => {
@@ -41,6 +40,12 @@ const Pay = () => {
       try {
         const { data } = await axios(`/api/user`, config);
         setUser(data);
+        const paypalScript = document.createElement("script");
+        paypalScript.type = "text/javascript";
+        paypalScript.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_API_KEY}`;
+        paypalScript.async = true;
+        paypalScript.onload = () => setPaypalSdk(true);
+        document.body.appendChild(paypalScript);
       } catch (error) {
         setError(error?.response?.data?.msg);
       }
@@ -86,7 +91,7 @@ const Pay = () => {
                       type="checkbox"
                       checked={anonymous}
                       onChange={() => setAnonymous(!anonymous)}
-                    />{" "}
+                    />
                     Donate As Anonymous
                   </Label>
                 </div>
@@ -100,16 +105,15 @@ const Pay = () => {
             <Col xs="12" lg="4" className="order-summary">
               <CartSummary title="Cart Total" cart={cart}>
                 <div className=" text-uppercase mt-auto fw-bold ">
-                  {loading ? (
-                    <p>loading ...</p>
+                  {loading || !paypalSdk ? (
+                    <div className="center-x">
+                      <Spinner />
+                    </div>
                   ) : (
                     <PayPalButton
                       amount={cart.reduce((acc, item) => acc + item.amount, 0)}
                       shippingPreference="NO_SHIPPING"
                       onSuccess={paymentSuc}
-                      options={{
-                        clientId: process.env.REACT_APP_API_KEY,
-                      }}
                       onError={(e) => console.log(e)}
                       onCancel={(data) => console.log(data)}
                     />
