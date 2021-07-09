@@ -11,7 +11,7 @@ const Index = ({ location }) => {
       document.getElementById(location.id).scrollIntoView(true);
       location.id === "partners" || window.scrollBy(0, -90);
     } else window.scrollTo(0, 0);
-  });
+  }, [location]);
   return (
     <>
       <Header />

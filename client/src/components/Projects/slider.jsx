@@ -1,9 +1,8 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import Card from "./project";
-import { data } from "../../projects";
 
-const MySlider = () => {
+const MySlider = ({ data }) => {
   const settings = {
     itemsToShow: 4,
     pagination: false,
@@ -21,7 +20,7 @@ const MySlider = () => {
   };
   return (
     <Carousel {...settings}>
-      {data.map((proj) => (
+      {data?.map((proj) => (
         <Card key={proj._id} {...proj} />
       ))}
     </Carousel>

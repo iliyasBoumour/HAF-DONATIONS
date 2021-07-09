@@ -1,13 +1,12 @@
 import {
   USER_LOADED,
   USER_LOADING,
-  AUTH_ERROR,
+  LOGING_LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGING_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  IS_AUTH,
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +15,7 @@ const initialState = {
     : null,
 };
 
-export default function (state = initialState, action) {
+const authRed = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
       return {
@@ -34,6 +33,8 @@ export default function (state = initialState, action) {
         isAuth: false,
         isLoading: false,
       };
+    case LOGING_LOADING:
+      return { isLoading: true };
     case LOGING_SUCCESS:
       return { currentUser: action.payload, isLoading: false };
     case LOGIN_FAIL:
@@ -43,4 +44,5 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+export default authRed;

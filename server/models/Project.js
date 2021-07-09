@@ -1,24 +1,42 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Shema = mongoose.Schema;
 
 const projectShema = new Shema(
-    {
-        title: {
-            type: String,
-            required: true
-        },
-        content: String,
-        officialImage: String,
-        goal: {
-            type: Number,
-            min: 0,
-        },
-        current: {
-            type: Number,
-            min: 0
-        }
+  {
+    image: {
+      type: String,
+      required: true,
     },
-    { timestamps: true }
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    evolution: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+    goal: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+    rest: {
+      type: Number,
+      default: function () {
+        return this.goal;
+      },
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
 );
 
-module.exports = mongoose.model('Project', projectShema);
+module.exports = mongoose.model("Project", projectShema);

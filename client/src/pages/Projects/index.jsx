@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col, Alert, Spinner } from "reactstrap";
+import { getProjects } from "../../actions/projectsActions";
 import Project from "../../components/Projects/project";
 import "./projects.css";
-import { data } from "../../projects";
 
 const Index = () => {
+  const { error, projects, loading } = useSelector(
+    (state) => state.projectsReducers
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+    dispatch(getProjects(false));
+  }, []);
   return (
     <div className="projects">
       <div className="caption">
@@ -21,11 +27,19 @@ const Index = () => {
       </div>
       <div className="content">
         <Row>
-          {data.map((pr) => (
-            <Col xs="12" lg="6">
-              <Project key={pr._id} {...pr} page={true} />
-            </Col>
-          ))}
+          {loading ? (
+            <div className="center-x">
+              <Spinner />
+            </div>
+          ) : error ? (
+            <Alert color="danger">{error}</Alert>
+          ) : (
+            projects.map((pr) => (
+              <Col key={pr._id} xs="12" lg="6">
+                <Project {...pr} page={true} />
+              </Col>
+            ))
+          )}
         </Row>
       </div>
     </div>

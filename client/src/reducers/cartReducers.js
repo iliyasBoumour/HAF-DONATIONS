@@ -2,6 +2,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   SET_PAYMENT_METHOD,
+  CLEAN_CART,
 } from "../actions/types";
 
 export const cartReducers = (
@@ -30,6 +31,8 @@ export const cartReducers = (
         ...state,
         paymentMethod: action.payload,
       };
+    case CLEAN_CART:
+      return { cart: [] };
     default:
       return state;
   }
