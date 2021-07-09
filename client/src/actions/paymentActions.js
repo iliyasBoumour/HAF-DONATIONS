@@ -14,8 +14,13 @@ export const pay = (paymentStatus) => async (dispatch, getState) => {
         Authorization: `HAFDON ${authReducer.currentUser.token}`,
       },
     };
-    const { data } = await axios.get("/api/user", config);
+    const { cart } = getState().cartReducers;
+    const projects = cart.map((pr) => {
+      return { _id: pr._id, rest: pr.rest - pr.amount };
+    });
+    await axios.post("/api/pay", projects, config);
   } catch (error) {
-    dispatch({ type: PAYMENT_FAIL, payload: error.response });
+    // dispatch({ type: PAYMENT_FAIL, payload: error.response });
+    console.log(error);
   }
 };
