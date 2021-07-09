@@ -3,7 +3,7 @@ import React from 'react';
 const Edit = () => {
     return (
         <div>
-            <h1>test test dahsboard</h1>
+            <h1>Chart</h1>
         </div>
     );
 };

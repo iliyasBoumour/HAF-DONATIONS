@@ -6,10 +6,10 @@ const express = require('express')
 const { getHashPassowrd } = require('../../helpers/HashPassword')
 const bcrypt = require('bcryptjs');
 const app = express();
-const path = require('path');
-const __direname = path.resolve();
+// const path = require('path');
+// const __direname = path.resolve();
 
-const logoPath = path.join(__direname, 'public','logo.png');
+// const logoPath = path.join(__direname, 'public','logo.png');
 console.log(logoPath);
 const locale = {
   translations: {
@@ -38,7 +38,12 @@ const adminBro = new AdminBro({
         password: {
           type: 'password',
           isVisible: {
-            list: true, edit: true, filter: false, show: false,
+            list: false, edit: true, filter: false, show: false,
+          }
+        },
+        edit: {
+          isVisible: {
+            edit: false
           }
         }
       },
@@ -67,6 +72,28 @@ const adminBro = new AdminBro({
   { 
     resource: Project,
     options:{
+      properties: {
+        rest: {
+          isVisible: {
+            list: true, edit: false, filter: false, show: true,
+          }
+        },
+        evolution: {
+          isVisible: {
+            edit: false
+          }
+        },
+        completed: {
+          isVisible: {
+            edit: false
+          }
+        },
+        createdAt: {
+          isVisible: {
+            edit: false
+          }
+        }
+      }
     }
   }],
   locale,
@@ -75,7 +102,7 @@ const adminBro = new AdminBro({
   },
   branding: {
     companyName: 'HAF',
-    logo: 'https://res.cloudinary.com/dlngsvzco/image/upload/v1625830211/logo_uqafda.png'
+    logo: 'https://highatlasfoundation.org/wp-content/uploads/2021/01/haf-130.png'
   },
   rootPath: '/admin',
 })
