@@ -1,11 +1,10 @@
 import React from 'react';
-import { Label, Box } from 'admin-bro';
 
 const Edit = () => {
     return (
-        <Box>
-            <Label>Test image full</Label>
-        </Box>
+        <div>
+            <h1>test test dahsboard</h1>
+        </div>
     );
 };
 

@@ -26,7 +26,7 @@ const Pay = () => {
   const [paypalSdk, setPaypalSdk] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
-  const paymentSuc = (paymentRes, data) => {
+  const paymentSuc = (paymentRes) => {
     dispatch(pay(paymentRes));
   };
   useEffect(() => {

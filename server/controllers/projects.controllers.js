@@ -3,11 +3,11 @@ const Project = require("../models/Project");
 
 exports.getAll = asyncHandler(async (req, res) => {
   // default 6 projects
-  const lim = Number(req.query.limit) || 6;
+  const lim = Number(req.query.limit);
   //   default completed and not comp projects
   const condition =
     req.query.notCompleted === undefined ? {} : { completed: false };
-  const data = await Project.find(condition).sort({ rest: 1 }).limit(lim);
+  const data = await Project.find(condition).sort({ rest: 1 });
   res.json(data);
 });
 exports.getOne = asyncHandler(async (req, res) => {

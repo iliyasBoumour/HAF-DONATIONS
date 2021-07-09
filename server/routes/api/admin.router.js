@@ -6,15 +6,19 @@ const express = require("express");
 const { getHashPassowrd } = require("../../helpers/HashPassword");
 const bcrypt = require("bcryptjs");
 const app = express();
-// const test = require('../../test-edit');
+const path = require("path");
+const __direname = path.resolve();
+
+const logoPath = path.join(__direname, "public", "logo.png");
+console.log(logoPath);
 const locale = {
   translations: {
     labels: {
       // change Heading for Login
-      loginWelcome: "hello brahim",
+      loginWelcome: "Hight Atlas Fondation",
     },
     messages: {
-      loginWelcome: "hello from my computer",
+      loginWelcome: "Admin Panel",
     },
   },
 };
@@ -65,8 +69,14 @@ const adminBro = new AdminBro({
     },
   ],
   locale,
+  dashboard: {
+    component: AdminBro.bundle(
+      "../../../client/src/components/Admin/image-edit"
+    ),
+  },
   branding: {
     companyName: "HAF",
+    logo: "https://res.cloudinary.com/dlngsvzco/image/upload/v1625830211/logo_uqafda.png",
   },
   rootPath: "/admin",
 });
